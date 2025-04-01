@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Errore</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Errore</h1>
+        <p>Si è verificato un errore durante l'accesso alla risorsa richiesta.</p>
+        <p th:if="${status}" th:text="'Codice errore: ' + ${status}"></p>
+         <p th:if="${error}" th:text="'Messaggio: ' + ${error}"></p>
+        <a href="/">Torna alla Home</a>
+    </div>
+</body>
+</html>

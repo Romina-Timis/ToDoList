@@ -15,6 +15,7 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/index").authenticated()
+                .requestMatchers("/error").permitAll() // Allow access to the error page
                 .anyRequest().permitAll()
             )
             .formLogin(form -> form
@@ -27,6 +28,9 @@ public class SecurityConfig {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout=true")
                 .permitAll()
+            )
+            .exceptionHandling(exception -> exception
+                .accessDeniedPage("/error") // Redirect to the error page on access denial
             );
         return http.build();
     }
