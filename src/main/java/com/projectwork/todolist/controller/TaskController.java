@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.projectwork.todolist.service.TaskService;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.projectwork.todolist.model.Task;
 
@@ -29,6 +30,17 @@ public class TaskController {
             model.addAttribute("task", task);
         }
         return "index";
+    }
+
+    @GetMapping("/tasks/status/{status}")
+    public String getTasksByStatus(@PathVariable String status, Model model) {
+        List<Task> tasks = taskService.getTasksByStatus(status);
+        if (tasks == null || tasks.isEmpty()) {
+            model.addAttribute("errorMessage", "Nessun task trovato con lo stato: " + status);
+        } else {
+            model.addAttribute("tasks", tasks);
+        }
+        return "index"; 
     }
 
 }
