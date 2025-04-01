@@ -27,7 +27,4 @@ public class User {
     @Column(name = "password", nullable = false) // Add missing comma
     private String password;
 
-    
-
-
 }
