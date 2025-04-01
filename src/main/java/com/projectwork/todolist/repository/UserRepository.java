@@ -1,13 +1,13 @@
 package com.projectwork.todolist.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.projectwork.todolist.model.User;
-import java.util.List;
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-    List<User> findByIdUser(int id_user); // Updated method name to camel case
-    Optional<User> findByEmailAndPassword(String email, String password);
+import com.projectwork.todolist.model.User;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Integer> {
+    Optional<User> findByEmailAndPassword(String email, String password); // Query per password in chiaro
 }
