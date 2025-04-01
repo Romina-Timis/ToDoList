@@ -23,11 +23,11 @@ public class TaskAssignments {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id_user", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "task_id", nullable = false)
+    @JoinColumn(name = "task_id_task", nullable = false)
     private Task task;
 
     @Column(name = "assigned_at", nullable = false, updatable = false)

@@ -15,11 +15,11 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "idUser")
+    private int idUser;
 
-    @Column(name = "nome", nullable = false) // Add missing comma
-    private String nome;
+    @Column(name = "name", nullable = false) // Corrected column name
+    private String name;
 
     @Column(name = "email", nullable = false) // Add missing comma
     private String email;

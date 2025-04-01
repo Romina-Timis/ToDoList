@@ -20,8 +20,8 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "id_task")
+    private int idTask;
 
     @Column(name = "title", nullable = false)
     private String title;

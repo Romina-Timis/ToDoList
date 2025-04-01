@@ -6,5 +6,5 @@ import com.projectwork.todolist.model.Task;
 import java.util.List;
 
 public interface TaskRepository extends JpaRepository<Task, Integer> {
-    List<Task> findByIdTask(int id);
+    List<Task> findByIdTask(int idTask);
 }

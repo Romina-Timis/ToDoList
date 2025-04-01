@@ -15,8 +15,5 @@ public class TaskAssignmentsController {
     @Autowired
     private TaskAssignmentsService taskAssignmentsService;
 
-    @GetMapping("/users/{userId}/tasks")
-    public List<TaskAssignments> getTasksByUserId(@PathVariable int userId) {
-        return taskAssignmentsService.getTasksByUserId(userId);
-    }
+    
 }

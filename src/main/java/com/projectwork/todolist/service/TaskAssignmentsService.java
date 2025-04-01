@@ -17,7 +17,6 @@ public class TaskAssignmentsService {
         return taskAssignmentsRepository.findAll();
     }
 
-    public List<TaskAssignments> getTasksByUserId(int userId) {
-        return taskAssignmentsRepository.findByUserId(userId);
-    }
+    
+    
 }

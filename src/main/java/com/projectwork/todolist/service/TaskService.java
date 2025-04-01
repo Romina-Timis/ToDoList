@@ -21,7 +21,7 @@ public class TaskService {
     }
 
     // Recupera un prodotto per ID
-    public Optional<Task> getTaskById(Integer id) {
+    public Optional<Task> getById(Integer id) {
         return taskRepository.findById(id);
     }
 
@@ -31,7 +31,7 @@ public class TaskService {
     }
 
     // Elimina un prodotto per ID
-    public void deleteTaskById(Integer id) {
+    public void deleteById(Integer id) {
         taskRepository.deleteById(id);
     }
 }

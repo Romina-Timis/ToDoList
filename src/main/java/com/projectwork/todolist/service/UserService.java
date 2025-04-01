@@ -19,7 +19,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Optional<User> getLibroById(int id) {
+    public Optional<User> getById(int id) {
         return userRepository.findById(id);
     }
 
@@ -27,7 +27,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void deleteLibro(int id) {
+    public void deleteUser(int id) {
         userRepository.deleteById(id);
     }
 
