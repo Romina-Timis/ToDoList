@@ -1,0 +1,37 @@
+package com.projectwork.todolist.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.projectwork.todolist.model.Task;
+import com.projectwork.todolist.repository.TaskRepository;
+
+@Service
+public class TaskService {
+
+    @Autowired
+    private TaskRepository taskRepository;
+
+// Recupera tutti i prodotti
+    public List<Task> getAllTask() {
+        return taskRepository.findAll();
+    }
+
+    // Recupera un prodotto per ID
+    public Optional<Task> getTaskById(Integer id) {
+        return taskRepository.findById(id);
+    }
+
+    // Salva un nuovo prodotto
+    public Task saveProdotto(Task task) {
+        return taskRepository.save(task);
+    }
+
+    // Elimina un prodotto per ID
+    public void deleteTaskById(Integer id) {
+        taskRepository.deleteById(id);
+    }
+}
