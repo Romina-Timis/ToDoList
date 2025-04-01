@@ -26,10 +26,30 @@
         </div>
 
         <div class="task-container">
-            <div class="task-header">Task in progress</div>
-            <div class="task-box">Nessun task disponibile al momento.</div>
+            <div class="task-header">Task in progress
+            </div>
+            <main class="container mt-4">
+                <h1 class="text-center">Task in progress</h1>
+                <div th:if="${errorMessage}" class="alert alert-warning text-center" role="alert">
+                    <p th:text="${errorMessage}">Errore</p>
+                </div>
+                <div class="row" th:if="${task}">
+                    <div class="col-md-4 mb-4" th:each="task : ${task}">
+                        <div class="card">
+                          
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${task.title}"></h5>
+                                <p class="card-text" th:text="${task.description}">Descrizione prodotto</p>
+                                <p class="card-text">Status: <span th:text="${task.status}"></span> </p>
+                                <a th:href="@{'/task/' + ${task.idTask}}" class="btn btn-primary">Modifica</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
     </div>
+   
 
 </body>
 </html>
