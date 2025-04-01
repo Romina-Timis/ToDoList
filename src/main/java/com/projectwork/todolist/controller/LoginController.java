@@ -3,20 +3,26 @@ package com.projectwork.todolist.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LoginController {
 
-    @PostMapping("/login")
-    public String login(@RequestParam String username, Model model) {
-        model.addAttribute("username", username);
-        return "home"; // Carica home.html
+    @GetMapping("/login")
+    public String login(@RequestParam(value = "error", required = false) String error,
+                        @RequestParam(value = "logout", required = false) String logout,
+                        Model model) {
+        if (error != null) {
+            model.addAttribute("errorMessage", "Credenziali non valide. Riprova.");
+        }
+        if (logout != null) {
+            model.addAttribute("logoutMessage", "Logout effettuato con successo.");
+        }
+        return "login";
     }
 
     @GetMapping("/logout")
     public String logout() {
-    return "redirect:/"; // Torna alla pagina di login
-}
+        return "redirect:/login?logout";
+    }
 }
