@@ -1,0 +1,31 @@
+INSERT INTO users (name, email, password) VALUES
+('Mario Rossi', 'mario.rossi@example.com', 'password123'),
+('Laura Verdi', 'laura.verdi@example.com', 'securepass456'),
+('Giovanni Bianchi', 'giovanni.bianchi@example.com', 'testpass789'),
+('Anna Neri', 'anna.neri@example.com', 'mysecret101'),
+('Luca Gialli', 'luca.gialli@example.com', 'strongpass202'),
+('Sofia Viola', 'sofia.viola@example.com', 'anotherpass303'),
+('Roberto Marroni', 'roberto.marroni@example.com', 'complexpass404'),
+('Elena Azzurri', 'elena.azzurri@example.com', 'simplepass505');
+
+INSERT INTO tasks (title, description, status, due_date) VALUES
+('Sviluppo sito web', 'Creare la homepage e la pagina di contatto', 'IN_PROGRESS', '2023-12-15'),
+('Revisione documento', 'Correggere errori grammaticali e di formattazione', 'TODO', '2023-12-10'),
+('Preparazione presentazione', 'Creare slide e preparare discorso', 'DONE', '2023-12-05'),
+('Test applicazione', 'Eseguire test funzionali e di usabilità', 'TODO', '2023-12-20'),
+('Aggiornamento database', 'Aggiungere nuovi record e modificare quelli esistenti', 'IN_PROGRESS', '2023-12-18'),
+('Riunione con il cliente', 'Discutere i requisiti del progetto', 'DONE', '2023-12-08'),
+('Scrittura articolo', 'Scrivere un articolo per il blog aziendale', 'TODO', '2023-12-22'),
+('Implementazione API', 'Creare endpoints per l\'interazione con altre applicazioni', 'IN_PROGRESS', '2023-12-25');
+
+INSERT INTO task_assignments (user_id, task_id) VALUES
+(1, 1), -- Mario Rossi - Sviluppo sito web
+(2, 2), -- Laura Verdi - Revisione documento
+(3, 3), -- Giovanni Bianchi - Preparazione presentazione
+(4, 4), -- Anna Neri - Test applicazione
+(5, 5), -- Luca Gialli - Aggiornamento database
+(6, 6), -- Sofia Viola - Riunione con il cliente
+(7, 7), -- Roberto Marroni - Scrittura articolo
+(8, 8), -- Elena Azzurri - Implementazione API
+(1, 4), -- Mario Rossi - Test applicazione
+(2, 6); -- Laura Verdi - Riunione con il cliente
