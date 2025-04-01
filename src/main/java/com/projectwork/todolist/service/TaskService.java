@@ -1,5 +1,6 @@
 package com.projectwork.todolist.service;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -34,4 +35,11 @@ public class TaskService {
     public void deleteById(Integer id) {
         taskRepository.deleteById(id);
     }
+
+    // Estrazione dati dal DB per Stato
+    
+    public List<Task> getTasksByStatus(String status) {
+        return taskRepository.findByStatus(status);
+    }
+
 }
