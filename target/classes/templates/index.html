@@ -1,72 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="it">
+    <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Project Board</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/src/main/resources/static/css/style.css}">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="sidebar">
-            <h2>Projects</h2>
-            <ul>
-                <li><a href="#">All projects (3)</a></li>
-                <li>
-                    <strong>Design system</strong>
-                    <ul>
-                        <li><a href="#">User flow</a></li>
-                        <li><a href="#">UX research</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <h2>Tasks</h2>
-            <ul>
-                <li><a href="#">All tasks (11)</a></li>
-                <li><a href="#">To do (4)</a></li>
-                <li><a href="#">In progress (4)</a></li>
-                <li><a href="#">Done (3)</a></li>
-            </ul>
-            <h2>Reminders</h2>
-            <h2>Messengers</h2>
-        </div>
-        <div class="main-content">
-            <div class="header">
-                <h1>Welcome back, Vincent 👋</h1>
-                <div class="actions">
-                    <input type="text" placeholder="Search...">
-                    <button>New template</button>
-                </div>
+    <div class="titolo">
+        <h2>To-Do List</h2>
+        <form action="/addTask" method="post">
+            <input type="text" name="task" placeholder="Aggiungi un'attività" required>
+            <button type="submit">Aggiungi</button>
+        </form>
+        <main class="container mt-4">
+            <h1 class="text-center">Task in progress</h1>
+            <div th:if="${errorMessage}" class="alert alert-warning text-center" role="alert">
+                <p th:text="${errorMessage}">Errore</p>
             </div>
-            <div class="board">
-                <div class="column">
-                    <h3>To do (4)</h3>
-                    <button>+ Add new task</button>
-                    <div class="task" th:each="task : ${todoTasks}">
-                        <h4 th:text="${task.name}">Task Name</h4>
-                        <div class="progress-bar" th:style="'width: ' + ${task.progress} + '%'"></div>
-                        <p th:text="${task.dueDate}">Due Date</p>
-                    </div>
-                </div>
-                <div class="column">
-                    <h3>In progress (4)</h3>
-                    <button>+ Add new task</button>
-                    <div class="task" th:each="task : ${inProgressTasks}">
-                        <h4 th:text="${task.name}">Task Name</h4>
-                        <div class="progress-bar" th:style="'width: ' + ${task.progress} + '%'"></div>
-                        <p th:text="${task.dueDate}">Due Date</p>
-                    </div>
-                </div>
-                <div class="column">
-                    <h3>Done (3)</h3>
-                    <button>+ Add new task</button>
-                    <div class="task" th:each="task : ${doneTasks}">
-                        <h4 th:text="${task.name}">Task Name</h4>
-                        <div class="progress-bar" th:style="'width: ' + ${task.progress} + '%'"></div>
-                        <p th:text="${task.dueDate}">Due Date</p>
+            <div class="row" th:if="${task}">
+                <div class="col-md-4 mb-4" th:each="task : ${task}">
+                    <div class="card">
+                      
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${task.title}"></h5>
+                            <p class="card-text" th:text="${task.description}">Descrizione prodotto</p>
+                            <p class="card-text">Status: <span th:text="${task.status}">0.00</span> €</p>
+                            <a th:href="@{'/task/' + ${task.idTask}}" class="btn btn-primary">Dettagli</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     </div>
 </body>
 </html>
+
+
+
