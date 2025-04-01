@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.projectwork.todolist.service.UserService;
 
-import java.util.Optional;
 
 @Controller
 public class LoginController {
