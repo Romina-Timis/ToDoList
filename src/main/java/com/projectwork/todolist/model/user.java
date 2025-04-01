@@ -21,10 +21,10 @@ public class User {
     @Column(name = "name", nullable = false) // Corrected column name
     private String name;
 
-    @Column(name = "email", nullable = false) // Add missing comma
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
     
-    @Column(name = "password", nullable = false) // Add missing comma
+    @Column(name = "password", nullable = false)
     private String password;
 
 }
