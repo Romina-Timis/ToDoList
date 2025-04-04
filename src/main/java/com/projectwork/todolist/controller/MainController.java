@@ -9,6 +9,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import com.projectwork.todolist.model.AdmUser;
 import com.projectwork.todolist.service.AdmUserService;
 import org.springframework.ui.Model;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 @Controller
 public class MainController {
@@ -46,6 +48,8 @@ public class MainController {
     @PostMapping("/register")
     public String registerUser(@ModelAttribute AdmUser user) {
         user.setRoles("USER");
+        user.setCreatedAt(Timestamp.from(Instant.now())); // Imposta la data di creazione
+        // La password viene salvata in chiaro per il test
         userService.saveUser(user);
         return "redirect:/login";
     }
