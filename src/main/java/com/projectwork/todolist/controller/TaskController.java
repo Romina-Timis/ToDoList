@@ -104,7 +104,10 @@ public class TaskController {
 
     @GetMapping("/dashboard")
     public String showDashboard(Model model) {
-        List<Task> tasks = taskService.getAllTask(); // Fetch all tasks
+        List<Task> tasks = taskService.getAllTask();
+        model.addAttribute("todoTasks", tasks.stream().filter(t -> t.getStatus() == Task.Status.TODO).toList());
+        model.addAttribute("inProgressTasks", tasks.stream().filter(t -> t.getStatus() == Task.Status.IN_PROGRESS).toList());
+        model.addAttribute("doneTasks", tasks.stream().filter(t -> t.getStatus() == Task.Status.DONE).toList());
         model.addAttribute("tasks", tasks);
         return "dashboard";
     }

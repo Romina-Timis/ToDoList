@@ -20,22 +20,71 @@
 
     <div class="container mt-5">
         <h1 class="text-center">Dashboard - Tutti i Task</h1>
-        <div class="task-container mt-4">
-            <div class="row" th:if="${tasks}">
-                <div class="col-md-4 mb-4" th:each="task : ${tasks}">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title" th:text="${task.title}"></h5>
-                            <p class="card-text" th:text="${task.description}">Descrizione non disponibile</p>
-                            <p class="card-text">Stato: <span th:text="${task.status}"></span></p>
-                            <p class="card-text">Data di Scadenza: <span th:text="${#dates.format(task.dueDate, 'yyyy-MM-dd')}"></span></p>
-                            <p class="card-text"><strong>Creato da:</strong> <span th:text="${task.createdBy.name}"></span></p>
+        <div class="row mt-4">
+            <!-- To-Do Tasks Column -->
+            <div class="col-md-4">
+                <h2 class="text-center">Task da fare</h2>
+                <div class="task-container">
+                    <div class="row" th:if="${todoTasks}">
+                        <div class="col-md-12 mb-4" th:each="task : ${todoTasks}">
+                            <div class="card bg-danger text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${task.title}"></h5>
+                                    <p class="card-text" th:text="${task.description}">Descrizione non disponibile</p>
+                                    <p class="card-text">Data di Scadenza: <span th:text="${#dates.format(task.dueDate, 'yyyy-MM-dd')}"></span></p>
+                                    <p class="card-text">Creato da: <span th:text="${task.createdBy.name}"></span></p>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    <div th:if="${todoTasks == null || todoTasks.isEmpty()}" class="text-center">
+                        <p class="text-muted">Nessun task da fare al momento.</p>
                     </div>
                 </div>
             </div>
-            <div th:if="${tasks == null || tasks.isEmpty()}" class="text-center">
-                <p class="text-muted">Nessun task disponibile al momento.</p>
+
+            <!-- In Progress Tasks Column -->
+            <div class="col-md-4">
+                <h2 class="text-center">Task in corso</h2>
+                <div class="task-container">
+                    <div class="row" th:if="${inProgressTasks}">
+                        <div class="col-md-12 mb-4" th:each="task : ${inProgressTasks}">
+                            <div class="card bg-warning text-dark">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${task.title}"></h5>
+                                    <p class="card-text" th:text="${task.description}">Descrizione non disponibile</p>
+                                    <p class="card-text">Data di Scadenza: <span th:text="${#dates.format(task.dueDate, 'yyyy-MM-dd')}"></span></p>
+                                    <p class="card-text">Creato da: <span th:text="${task.createdBy.name}"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div th:if="${inProgressTasks == null || inProgressTasks.isEmpty()}" class="text-center">
+                        <p class="text-muted">Nessun task in corso al momento.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Done Tasks Column -->
+            <div class="col-md-4">
+                <h2 class="text-center">Task completati</h2>
+                <div class="task-container">
+                    <div class="row" th:if="${doneTasks}">
+                        <div class="col-md-12 mb-4" th:each="task : ${doneTasks}">
+                            <div class="card bg-success text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${task.title}"></h5>
+                                    <p class="card-text" th:text="${task.description}">Descrizione non disponibile</p>
+                                    <p class="card-text">Completato il: <span th:text="${#dates.format(task.dueDate, 'yyyy-MM-dd')}"></span></p>
+                                    <p class="card-text">Creato da: <span th:text="${task.createdBy.name}"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div th:if="${doneTasks == null || doneTasks.isEmpty()}" class="text-center">
+                        <p class="text-muted">Nessun task completato al momento.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
