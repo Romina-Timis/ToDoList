@@ -26,7 +26,7 @@ public class AdmUserService {
     }
 
     public AdmUser saveUser(AdmUser user) {
-        // Removed password encryption for testing purposes
+        // Salva l'utente nel database
         return userRepository.save(user);
     }
 
