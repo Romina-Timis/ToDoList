@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.projectwork.todolist.model.AdmUser;
 import com.projectwork.todolist.repository.AdmUserRepository;
@@ -26,6 +27,7 @@ public class AdmUserService {
     }
 
     public AdmUser saveUser(AdmUser user) {
+        // Removed password encryption for testing purposes
         return userRepository.save(user);
     }
 
@@ -36,5 +38,7 @@ public class AdmUserService {
     public AdmUser findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+
 
 }

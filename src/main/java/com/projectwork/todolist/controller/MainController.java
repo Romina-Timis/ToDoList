@@ -2,6 +2,8 @@ package com.projectwork.todolist.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import com.projectwork.todolist.model.AdmUser;
@@ -33,5 +35,18 @@ public class MainController {
         AdmUser user = userService.findByUsername(username);
         model.addAttribute("user", user);
         return "profilo";
+    }
+
+    @GetMapping("/register")
+    public String viewRegister(Model model) {
+        model.addAttribute("user", new AdmUser());
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String registerUser(@ModelAttribute AdmUser user) {
+        user.setRoles("USER");
+        userService.saveUser(user);
+        return "redirect:/login";
     }
 }
