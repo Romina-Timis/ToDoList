@@ -40,7 +40,7 @@ h1 {
 /* Input e bottone */
 .input-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end; /* Aggiungi questa riga per allineare il bottone a destra */
     margin-top: 15px;
 }
 
@@ -71,13 +71,16 @@ button:hover {
 .task-container {
     margin-top: 30px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
+}
+
+/* Colonne dei task */
+.task-column {
+    width: 32%; /* Imposta la larghezza delle colonne */
 }
 
 /* Card dei task separate */
 .task-card {
-    width: 80%;
     padding: 15px;
     margin: 15px auto;
     border-radius: 5px;
@@ -85,29 +88,35 @@ button:hover {
     text-align: left;
 }
 
+/* Task con stato "To-Do" */
 .todo {
     background-color: #ffdddd; /* Rosso chiaro */
 }
 
+/* Task con stato "In progress" */
 .inprogress {
     background-color: #fff3cd; /* Giallo chiaro */
 }
 
+/* Task con stato "Completato" */
 .done {
     background-color: #d4edda; /* Verde chiaro */
 }
 
+/* Titolo della card */
 .task-card h3 {
     font-size: 18px;
     font-weight: bold;
     color: #1c3b5a;
 }
 
+/* Testo descrittivo della card */
 .task-card p {
     font-size: 14px;
     color: #555;
 }
 
+/* Bottoni */
 .btn-primary {
     background-color: #2d5f9a;
     color: white;
@@ -134,4 +143,23 @@ button:hover {
 
 .btn-danger:hover {
     background-color: #a71d2a;
+}
+
+/* Layout per l'intestazione (titolo e bottone) */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+/* Aggiungi margine sotto la colonna */
+.task-column h2 {
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 15px;
 }
