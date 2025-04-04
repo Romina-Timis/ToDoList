@@ -26,8 +26,8 @@
         <div class="task-container">
             <div class="task-column">
                 <h2 class="text-left">Task da fare</h2>
-                <div class="row" th:if="${task}">
-                    <div class="col-md-4 mb-4" th:each="task : ${task}" th:if="${task.status == 'Da fare'}">
+                <div class="row" th:if="${todoTasks}">
+                    <div class="col-md-4 mb-4" th:each="task : ${todoTasks}">
                         <div class="card bg-danger text-white">
                             <div class="card-body">
                                 <h5 class="card-title" th:text="${task.title}"></h5>
@@ -45,8 +45,8 @@
 
             <div class="task-column">
                 <h2 class="text-left">Task in corso</h2>
-                <div class="row" th:if="${task}">
-                    <div class="col-md-4 mb-4" th:each="task : ${task}" th:if="${task.status == 'In corso'}">
+                <div class="row" th:if="${inProgressTasks}">
+                    <div class="col-md-4 mb-4" th:each="task : ${inProgressTasks}">
                         <div class="card bg-warning text-dark">
                             <div class="card-body">
                                 <h5 class="card-title" th:text="${task.title}"></h5>
@@ -64,8 +64,8 @@
 
             <div class="task-column">
                 <h2 class="text-left">Task completati</h2>
-                <div class="row" th:if="${task}">
-                    <div class="col-md-4 mb-4" th:each="task : ${task}" th:if="${task.status == 'Completato'}">
+                <div class="row" th:if="${doneTasks}">
+                    <div class="col-md-4 mb-4" th:each="task : ${doneTasks}">
                         <div class="card bg-success text-white">
                             <div class="card-body">
                                 <h5 class="card-title" th:text="${task.title}"></h5>

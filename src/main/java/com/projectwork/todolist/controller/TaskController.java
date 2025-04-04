@@ -36,11 +36,13 @@ public class TaskController {
         String username = authentication.getName();
         AdmUser user = userService.findByUsername(username);
 
-        List<Task> task = taskService.getTasksByUser(user);
-        if (task == null || task.isEmpty()) {
+        List<Task> tasks = taskService.getTasksByUser(user);
+        if (tasks == null || tasks.isEmpty()) {
             model.addAttribute("errorMessage", "Nessun task disponibile al momento.");
         } else {
-            model.addAttribute("task", task);
+            model.addAttribute("todoTasks", tasks.stream().filter(t -> t.getStatus() == Task.Status.TODO).toList());
+            model.addAttribute("inProgressTasks", tasks.stream().filter(t -> t.getStatus() == Task.Status.IN_PROGRESS).toList());
+            model.addAttribute("doneTasks", tasks.stream().filter(t -> t.getStatus() == Task.Status.DONE).toList());
         }
         return "index";
     }
