@@ -26,8 +26,8 @@ public class TaskService {
         return taskRepository.findById(id);
     }
 
-    // Salva un nuovo prodotto
-    public Task saveProdotto(Task task) {
+    // Salva un nuovo task o aggiorna un task esistente
+    public Task saveTask(Task task) {
         return taskRepository.save(task);
     }
 

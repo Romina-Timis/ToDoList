@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 @Entity
@@ -34,6 +35,7 @@ public class Task {
     private Status status;
 
     @Column(name = "due_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // Specify the expected date format
     private Date dueDate;
 
     @Column(name = "created_at", updatable = false)

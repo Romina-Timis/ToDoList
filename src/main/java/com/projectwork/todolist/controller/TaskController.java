@@ -11,6 +11,8 @@ import com.projectwork.todolist.service.TaskService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.projectwork.todolist.model.Task;
 
@@ -41,6 +43,24 @@ public class TaskController {
             model.addAttribute("tasks", tasks);
         }
         return "index"; 
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editTask(@PathVariable Integer id, Model model) {
+        Task task = taskService.getById(id).orElseThrow(() -> new IllegalArgumentException("Task non trovato"));
+        model.addAttribute("task", task);
+        return "edit-task";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateTask(@PathVariable Integer id, @ModelAttribute Task updatedTask) {
+        Task task = taskService.getById(id).orElseThrow(() -> new IllegalArgumentException("Task non trovato"));
+        task.setTitle(updatedTask.getTitle());
+        task.setDescription(updatedTask.getDescription());
+        task.setStatus(updatedTask.getStatus());
+        task.setDueDate(updatedTask.getDueDate());
+        taskService.saveTask(task); // Corretto il nome del metodo
+        return "redirect:/task/all";
     }
 
 }
