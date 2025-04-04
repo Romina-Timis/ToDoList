@@ -19,6 +19,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import com.projectwork.todolist.model.AdmUser;
 import com.projectwork.todolist.service.AdmUserService;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 @RequestMapping("/task")
@@ -99,5 +101,19 @@ public class TaskController {
         taskService.deleteById(id);
         return "redirect:/task/all";
     }
+
+    @GetMapping("/dashboard")
+    public String showDashboard(Model model) {
+        List<Task> tasks = taskService.getAllTask(); // Recupera tutti i task senza filtrare per utente
+        if (tasks == null || tasks.isEmpty()) {
+            model.addAttribute("errorMessage", "Nessun task disponibile al momento.");
+        } else {
+            model.addAttribute("todoTasks", tasks.stream().filter(t -> t.getStatus() == Task.Status.TODO).toList());
+            model.addAttribute("inProgressTasks", tasks.stream().filter(t -> t.getStatus() == Task.Status.IN_PROGRESS).toList());
+            model.addAttribute("doneTasks", tasks.stream().filter(t -> t.getStatus() == Task.Status.DONE).toList());
+        }
+        return "dashboard";
+    }
+    
 
 }
