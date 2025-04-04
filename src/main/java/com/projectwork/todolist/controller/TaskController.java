@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.projectwork.todolist.model.Task;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import com.projectwork.todolist.model.AdmUser;
+import com.projectwork.todolist.service.AdmUserService;
 
 @Controller
 @RequestMapping("/task")
@@ -23,9 +27,16 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
+    @Autowired
+    private AdmUserService userService;
+
     @GetMapping("/all")
     public String getAllTask(Model model) {
-        List<Task> task = taskService.getAllTask();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        AdmUser user = userService.findByUsername(username);
+
+        List<Task> task = taskService.getTasksByUser(user);
         if (task == null || task.isEmpty()) {
             model.addAttribute("errorMessage", "Nessun task disponibile al momento.");
         } else {

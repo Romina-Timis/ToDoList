@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.projectwork.todolist.model.Task;
 import com.projectwork.todolist.repository.TaskRepository;
+import com.projectwork.todolist.model.AdmUser;
 
 @Service
 public class TaskService {
@@ -40,6 +41,10 @@ public class TaskService {
     
     public List<Task> getTasksByStatus(String status) {
         return taskRepository.findByStatus(status);
+    }
+
+    public List<Task> getTasksByUser(AdmUser user) {
+        return taskRepository.findByCreatedBy(user);
     }
 
 }
