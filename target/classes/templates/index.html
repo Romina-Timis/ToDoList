@@ -43,6 +43,9 @@
                                 <p class="card-text">Status: <span th:text="${task.status}"></span> </p>
                                 <p class="card-text">Due Date: <span th:text="${#dates.format(task.dueDate, 'yyyy-MM-dd')}"></span></p>
                                 <a th:href="@{'/task/' + ${task.idTask} + '/edit'}" class="btn btn-primary">Modifica</a>
+                                <form th:action="@{'/task/' + ${task.idTask} + '/delete'}" method="post" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Sei sicuro di voler eliminare questo task?')">Elimina</button>
+                                </form>
                             </div>
                         </div>
                     </div>

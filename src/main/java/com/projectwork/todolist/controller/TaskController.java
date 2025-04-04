@@ -87,4 +87,10 @@ public class TaskController {
         return "redirect:/task/all";
     }
 
+    @PostMapping("/{id}/delete")
+    public String deleteTask(@PathVariable Integer id) {
+        taskService.deleteById(id);
+        return "redirect:/task/all";
+    }
+
 }
