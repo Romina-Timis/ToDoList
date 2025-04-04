@@ -163,3 +163,45 @@ button:hover {
     font-size: 22px;
     margin-bottom: 15px;
 }
+
+/* Stile migliorato per .task-column */
+.task-column {
+    width: 48%;
+    padding: 20px;
+    margin: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.task-column h2 {
+    font-size: 20px;
+    color: #333;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.task-column:hover {
+    transform: translateY(-5px); /* Effetto hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.task-column .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Adatta la larghezza delle card all'interno della colonna */
+.task-column .col-md-4 {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+@media (min-width: 768px) {
+    .task-column .col-md-4 {
+        width: 48%; /* Imposta la larghezza delle card su dispositivi più grandi */
+    }
+}
+
