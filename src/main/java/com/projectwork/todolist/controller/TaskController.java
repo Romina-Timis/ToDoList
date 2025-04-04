@@ -19,7 +19,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import com.projectwork.todolist.model.AdmUser;
 import com.projectwork.todolist.service.AdmUserService;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
