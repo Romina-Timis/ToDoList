@@ -104,16 +104,9 @@ public class TaskController {
 
     @GetMapping("/dashboard")
     public String showDashboard(Model model) {
-        List<Task> tasks = taskService.getAllTask(); // Recupera tutti i task senza filtrare per utente
-        if (tasks == null || tasks.isEmpty()) {
-            model.addAttribute("errorMessage", "Nessun task disponibile al momento.");
-        } else {
-            model.addAttribute("todoTasks", tasks.stream().filter(t -> t.getStatus() == Task.Status.TODO).toList());
-            model.addAttribute("inProgressTasks", tasks.stream().filter(t -> t.getStatus() == Task.Status.IN_PROGRESS).toList());
-            model.addAttribute("doneTasks", tasks.stream().filter(t -> t.getStatus() == Task.Status.DONE).toList());
-        }
+        List<Task> tasks = taskService.getAllTask(); // Fetch all tasks
+        model.addAttribute("tasks", tasks);
         return "dashboard";
     }
-    
 
 }
