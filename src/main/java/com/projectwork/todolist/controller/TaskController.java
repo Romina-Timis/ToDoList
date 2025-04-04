@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.projectwork.todolist.model.Task;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/task")
 public class TaskController {
 
     @Autowired
     private TaskService taskService;
 
-    @GetMapping("/")
+    @GetMapping("/all")
     public String getAllTask(Model model) {
         List<Task> task = taskService.getAllTask();
         if (task == null || task.isEmpty()) {
@@ -32,7 +32,7 @@ public class TaskController {
         return "index";
     }
 
-    @GetMapping("/tasks/status/{status}")
+    @GetMapping("/status/{status}")
     public String getTasksByStatus(@PathVariable String status, Model model) {
         List<Task> tasks = taskService.getTasksByStatus(status);
         if (tasks == null || tasks.isEmpty()) {

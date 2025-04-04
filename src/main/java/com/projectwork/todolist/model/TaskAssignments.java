@@ -24,7 +24,7 @@ public class TaskAssignments {
 
     @ManyToOne
     @JoinColumn(name = "user_id_user", nullable = false)
-    private User user;
+    private AdmUser user;
 
     @ManyToOne
     @JoinColumn(name = "task_id_task", nullable = false)
