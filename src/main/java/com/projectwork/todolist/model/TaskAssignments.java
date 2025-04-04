@@ -23,7 +23,7 @@ public class TaskAssignments {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id_user", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private AdmUser user;
 
     @ManyToOne
