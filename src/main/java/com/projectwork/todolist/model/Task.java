@@ -34,7 +34,7 @@ public class Task {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private Status status;
+    private Status status = Status.TODO; // Default value
 
     @Column(name = "due_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd") // Specify the expected date format

@@ -74,4 +74,17 @@ public class TaskController {
         return "redirect:/task/all";
     }
 
+    @PostMapping("/add")
+    public String addTask(@ModelAttribute Task task) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        AdmUser user = userService.findByUsername(username);
+
+        task.setCreatedBy(user);
+        task.setStatus(Task.Status.TODO); // Default status
+        taskService.saveTask(task);
+
+        return "redirect:/task/all";
+    }
+
 }
