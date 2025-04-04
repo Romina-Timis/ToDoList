@@ -5,16 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
     <link rel="stylesheet" href="/css/style.css">
-    <style>
-        .task-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-        }
-        .task-column {
-            width: 32%;
-        }
-    </style>
 </head>
 <body>
 
@@ -27,39 +17,21 @@
     </div>
 
     <div class="container">
-        <div class="header">
-            <h1 style="float: left;">To-Do List</h1>
-            <button onclick="location.href='/task/add'" class="btn btn-success" style="float: right;">Aggiungi</button>
-            <div style="clear: both;"></div>
+        <h1>To-Do List</h1>
+        
+        <div class="input-container">
+            <button onclick="location.href='/task/add'" class="btn btn-success">Aggiungi</button>
         </div>
 
         <div class="task-container">
-            <!-- Task To-Do -->
             <div class="task-column">
-                <h2 class="text-left">Da fare</h2>
+                <h2 class="text-left">Task da fare</h2>
                 <div class="row" th:if="${task}">
-                    <div class="col-md-4 mb-4" th:each="task : ${task}" th:if="${task.status == 'To-Do'}">
-                        <div class="card bg-warning">
-                            <div class="card-body">
-                                <h5 class="card-title" th:text="${task.title}"></h5>
-                                <p class="card-text" th:text="${task.description}">Descrizione</p>
-                                <p class="card-text">Scadenza: <span th:text="${#dates.format(task.dueDate, 'yyyy-MM-dd')}"></span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Task In Corso -->
-            <div class="task-column">
-                <h2 class="text-left">In corso</h2>
-                <div class="row" th:if="${task}">
-                    <div class="col-md-4 mb-4" th:each="task : ${task}" th:if="${task.status == 'In corso'}">
-                        <div class="card">
+                    <div class="col-md-4 mb-4" th:each="task : ${task}" th:if="${task.status == 'Da fare'}">
+                        <div class="card bg-danger text-white">
                             <div class="card-body">
                                 <h5 class="card-title" th:text="${task.title}"></h5>
                                 <p class="card-text" th:text="${task.description}">Descrizione prodotto</p>
-                                <p class="card-text">Status: <span th:text="${task.status}"></span> </p>
                                 <p class="card-text">Due Date: <span th:text="${#dates.format(task.dueDate, 'yyyy-MM-dd')}"></span></p>
                                 <a th:href="@{'/task/' + ${task.idTask} + '/edit'}" class="btn btn-primary">Modifica</a>
                                 <form th:action="@{'/task/' + ${task.idTask} + '/delete'}" method="post" style="display:inline;">
@@ -71,9 +43,27 @@
                 </div>
             </div>
 
-            <!-- Task Completati -->
             <div class="task-column">
-                <h2 class="text-left">Completati</h2>
+                <h2 class="text-left">Task in corso</h2>
+                <div class="row" th:if="${task}">
+                    <div class="col-md-4 mb-4" th:each="task : ${task}" th:if="${task.status == 'In corso'}">
+                        <div class="card bg-warning text-dark">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${task.title}"></h5>
+                                <p class="card-text" th:text="${task.description}">Descrizione prodotto</p>
+                                <p class="card-text">Due Date: <span th:text="${#dates.format(task.dueDate, 'yyyy-MM-dd')}"></span></p>
+                                <a th:href="@{'/task/' + ${task.idTask} + '/edit'}" class="btn btn-primary">Modifica</a>
+                                <form th:action="@{'/task/' + ${task.idTask} + '/delete'}" method="post" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Sei sicuro di voler eliminare questo task?')">Elimina</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-column">
+                <h2 class="text-left">Task completati</h2>
                 <div class="row" th:if="${task}">
                     <div class="col-md-4 mb-4" th:each="task : ${task}" th:if="${task.status == 'Completato'}">
                         <div class="card bg-success text-white">
@@ -86,9 +76,10 @@
                     </div>
                 </div>
             </div>
-
         </div>
+
     </div>
+   
 
 </body>
 </html>
