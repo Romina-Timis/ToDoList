@@ -74,6 +74,11 @@ public class TaskController {
         return "redirect:/task/all";
     }
 
+    @GetMapping("/add")
+    public String showAddTaskForm() {
+        return "add-task";
+    }
+
     @PostMapping("/add")
     public String addTask(@ModelAttribute Task task) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

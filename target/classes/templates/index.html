@@ -20,10 +20,7 @@
         <h1>To-Do List</h1>
         
         <div class="input-container">
-            <form th:action="@{/task/add}" method="post" class="d-flex">
-                <input type="text" name="title" placeholder="Aggiungi un'attività" required>
-                <button type="submit">Aggiungi</button>
-            </form>
+            <a href="/task/add" class="btn btn-success">Aggiungi</a>
         </div>
 
         <div class="task-container">
